@@ -17,7 +17,28 @@
       ],
       "format": "ova",
       "output_directory": "vms/gnuradio"
+    },
+    {
+      "type": "qemu",
+      "headless": true,
+      "iso_url": "./vms/base/instant-gnuradio-base",
+      "iso_checksum_type": "none",
+      "disk_image": true,
+      "ssh_username": "gnuradio",
+      "ssh_password": "gnuradio",
+      "shutdown_command": "sudo systemctl poweroff",
+      "vm_name": "instant-gnuradio",
+      "format": "qcow2",
+      "output_directory": "vms/gnuradio",
+      "qemuargs": [
+        ["-m", "8192M"],
+        ["-smp", "8"],
+        [ "-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+        [ "-device", "virtio-net,netdev=forward,id=net0"]
+      ]
+
     }
+
   ],
   "provisioners": [
     {

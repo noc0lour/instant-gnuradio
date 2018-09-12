@@ -64,14 +64,15 @@ sudo apt-get -y install libfreetype6-dev ocl-icd-opencl-dev python-opengl lsb-co
 pybombs -v install gr-fosphor
 xdg-icon-resource install --context apps --novendor --size 96 Pictures/fosphor-icon.png
 
-cd Downloads
-tar xvf opencl_runtime_16.1.2_x64_rh_6.4.0.37.tgz
-sudo opencl_runtime_16.1.2_x64_rh_6.4.0.37/install.sh -s opencl-silent.cfg
+#cd Downloads
+#tar xvf opencl_runtime_16.1.2_x64_rh_6.4.0.37.tgz
+#sudo opencl_runtime_16.1.2_x64_rh_6.4.0.37/install.sh -s opencl-silent.cfg
+sudo apt-get -y install mesa-opencl-icd ocl-icd-libopencl1
 cd ~/pybombs/src/gr-fosphor/build
 set +u
 source /home/gnuradio/pybombs/setup_env.sh
 set -u
-cmake -DOpenCL_LIBRARY=/opt/intel/opencl-1.2-6.4.0.37/lib64/libOpenCL.so ..
+cmake ..
 make
 make install
 cd
